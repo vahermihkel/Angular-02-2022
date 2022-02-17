@@ -1,2 +1,17 @@
 <p>avaleht works!</p>
 <img src="https://www.selver.ee/assets/logo-mobile.svg" alt="">
+<div>{{ s6na + number }}</div>
+<div>{{ number + number }}</div>
+<div>{{ kahendV22rtus }}</div>
+
+<div *ngIf="kahendV22rtus">
+  Kahendväärtus on "true"
+</div>
+
+<div *ngIf="number > 500">
+  Number on suurem kui 500
+</div>
+
+<button (click)="funktsioon()">Nupp</button>
+
+<!-- ngFor ---  -->
