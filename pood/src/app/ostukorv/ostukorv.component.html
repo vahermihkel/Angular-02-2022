@@ -1,8 +1,8 @@
 <button *ngIf="tooted.length > 0" class="btn btn-warning" (click)="tyhjenda()">Tühjenda</button>
 
 <div *ngFor="let element of tooted">
-  <div>Toote nimi: Apple {{ element }}</div>
-  <div>Toote hind: 599</div>
+  <div>Toote nimi: Apple {{ element.nimi }}</div>
+  <div>Toote hind: {{ element.hind }}</div>
   <div>Toote kategooria: Telefonid</div>
   <button class="btn btn-primary" (click)="lisaToode(element)">Lisa uus toode</button>
   <button class="btn btn-danger" (click)="kustutaToode(element)">X</button>

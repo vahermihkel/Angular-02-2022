@@ -6,28 +6,33 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./ostukorv.component.css']
 })
 export class OstukorvComponent implements OnInit {
-  tooted = [41,13,55,156];
+  tooted: any[] = [];
   ostukorviKogusumma = 0; 
   // neid muutujaid näidatakse HTML-s
 
   constructor() { }
 
   ngOnInit(): void { // siis kui componendi sisse tullakse
-    this.tooted.forEach(element => this.ostukorviKogusumma = this.ostukorviKogusumma + element);
+    const ostukorvStoragest = sessionStorage.getItem("ostukorv");
+    if (ostukorvStoragest) {
+      this.tooted = JSON.parse(ostukorvStoragest);
+    }
+    this.kalkuleeriOstukorviSumma();
   }
 
   // tavalised sulud funktsiooni nime järel
   // on väärtuste vastu võtmiseks
   tyhjenda() {
     this.tooted = [];
-    this.ostukorviKogusumma = 0;
+    sessionStorage.setItem("ostukorv",JSON.stringify(this.tooted));
+    this.kalkuleeriOstukorviSumma();
   }
 
   lisaToode(toode: any) {
     //https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/push
     this.tooted.push(toode);
-    this.ostukorviKogusumma = 0;
-    this.tooted.forEach(element => this.ostukorviKogusumma = this.ostukorviKogusumma + element);
+    sessionStorage.setItem("ostukorv",JSON.stringify(this.tooted));
+    this.kalkuleeriOstukorviSumma();
   }
 
   kustutaToode(toode: any) {
@@ -38,8 +43,14 @@ export class OstukorvComponent implements OnInit {
     // https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/splice
     // kustutada järjekorranumbri alusel
     this.tooted.splice(j2rjekorraNumber,1);
+    sessionStorage.setItem("ostukorv",JSON.stringify(this.tooted));
+    this.kalkuleeriOstukorviSumma();
+  }
+
+  private kalkuleeriOstukorviSumma() {
     this.ostukorviKogusumma = 0;
-    this.tooted.forEach(element => this.ostukorviKogusumma = this.ostukorviKogusumma + element);
+    this.tooted.forEach(element => 
+      this.ostukorviKogusumma = this.ostukorviKogusumma + element.hind);
   }
 
 }
