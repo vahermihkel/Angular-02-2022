@@ -1,9 +1,9 @@
 <button class="btn btn-light" routerLink="/admin">Tagasi</button>
 
-<form (ngSubmit)="lisaToode(vorm)" #vorm="ngForm">
+<form (ngSubmit)="lisaToode(lisamiseVorm)" #lisamiseVorm="ngForm">
   <label for="">Toote nimetus</label> <br>
   <input ngModel name="nimi" type="text" required> <br>
   <label for="">Toote hind</label> <br>
   <input ngModel name="hind" type="number" required> <br>
-  <button [disabled]="vorm.invalid">Lisa uus toode</button>
+  <button [disabled]="lisamiseVorm.invalid">Lisa uus toode</button>
 </form>

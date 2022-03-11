@@ -1,1 +1,12 @@
 <button class="btn btn-light" routerLink="/admin">Tagasi</button>
+
+<div *ngFor="let element of tooted">
+  <div>Toote nimi: {{ element.nimi }}</div>
+  <div>Toote hind: {{ element.hind }}</div>
+  <div>Toote kategooria: Joogid</div>
+  <button class="btn btn-primary" 
+    routerLink="/admin/muuda/{{element.nimi.replace(' ','-').toLowerCase()}}">
+    Muutma
+  </button>
+  <button (click)="kustuta(element)">Kustuta</button>
+</div>

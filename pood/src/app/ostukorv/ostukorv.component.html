@@ -1,3 +1,5 @@
+<div *ngIf="tooted.length > 0" >Toodete arv: {{ tooted.length }}</div>
+
 <button *ngIf="tooted.length > 0" class="btn btn-warning" (click)="tyhjenda()">Tühjenda</button>
 
 <div *ngFor="let element of tooted">
@@ -10,5 +12,7 @@
 
 <br><br>
 <div *ngIf="tooted.length > 0">{{ ostukorviKogusumma }} €</div>
+
+<button (click)="maksma()">Maksma</button>
 
 <div *ngIf="tooted.length === 0" >Ostukorv on tühi</div>

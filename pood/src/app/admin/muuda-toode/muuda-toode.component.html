@@ -1,1 +1,23 @@
-<p>muuda-toode works!</p>
+<form *ngIf="muutmiseVorm" (ngSubmit)="onMuuda()" [formGroup]="muutmiseVorm">
+  <label for="">Toote nimetus</label> <br>
+  <input formControlName="nimi" type="text" required> <br>
+  <label for="">Toote hind</label> <br>
+  <input formControlName="hind" type="number" required> <br>
+  <button [disabled]="muutmiseVorm.invalid">Muuda toode</button>
+</form>
+
+<!-- 
+  ngForm --- saab kogu oma sisu tänu selle impordile app.modulest
+    FormsModule
+  #lisamiseVorm = ngForm  (Module-st)    <---- paremalt vasakule
+
+  formGroup --- saab kogu oma sisu .ts failist,
+        struktuuri saab impordist
+        täidetakse .ts sisus
+
+  [formGroup] = muutmiseVorm  <---- paremalt vasakule
+  Kui vormi loon, annan talle ka väärtused
+  Muutmise ajal oleksid juba eelnevad väärtused olemas
+
+
+ -->

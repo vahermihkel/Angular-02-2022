@@ -1,6 +1,8 @@
 <div *ngFor="let element of tooted">
-  <div>Toote nimi: Apple {{ element.nimi }}</div>
-  <div>Toote hind: {{ element.hind }}</div>
-  <div>Toote kategooria: Telefonid</div>
+  <div routerLink="toode/{{element.nimi.replace(' ','-').toLowerCase()}}" >
+    <div>Toote nimi: {{ element.nimi }}</div>
+    <div>Toote hind: {{ element.hind }}</div>
+    <div>Toote kategooria: Joogid</div>
+  </div>
   <button class="btn btn-primary" (click)="onLisaOstukorvi(element)">Lisa ostukorvi</button>
 </div>

@@ -1,3 +1,4 @@
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -10,7 +11,7 @@ export class OstukorvComponent implements OnInit {
   ostukorviKogusumma = 0; 
   // neid muutujaid näidatakse HTML-s
 
-  constructor() { }
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void { // siis kui componendi sisse tullakse
     const ostukorvStoragest = sessionStorage.getItem("ostukorv");
@@ -51,6 +52,31 @@ export class OstukorvComponent implements OnInit {
     this.ostukorviKogusumma = 0;
     this.tooted.forEach(element => 
       this.ostukorviKogusumma = this.ostukorviKogusumma + element.hind);
+  }
+
+  maksma() {
+    const url = "https://igw-demo.every-pay.com/api/v4/payments/oneoff";
+    const data = {
+      "api_username": "92ddcfab96e34a5f",
+      "account_name": "EUR3D1",
+      "amount": this.ostukorviKogusumma,
+      "order_reference": Math.ceil(Math.random()*999999),
+      "nonce": "92ddcfab96e34a5f" + Math.ceil(Math.random()*999999) + new Date(),
+      "timestamp": new Date(),
+      "customer_url": "https://www.postimees.ee"
+      }
+    const headers = {
+      headers: new HttpHeaders(
+        {
+          "Authorization": 
+          "Basic OTJkZGNmYWI5NmUzNGE1Zjo4Y2QxOWU5OWU5YzJjMjA4ZWU1NjNhYmY3ZDBlNGRhZA=="
+        }
+      )
+    }  
+    
+    this.http.post<any>(url, data, headers).subscribe(res =>
+        location.href = res.payment_link
+      );
   }
 
 }

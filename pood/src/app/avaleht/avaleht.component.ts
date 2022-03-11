@@ -1,3 +1,4 @@
+import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,16 +7,32 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./avaleht.component.css']
 })
 export class AvalehtComponent implements OnInit {
-  tooted = [
-    {nimi: 41, hind: 1999}, // [object Object]
-    {nimi: 13, hind: 721},
-    {nimi: true, hind: 1500},
-    {nimi: 'sadasd', hind: 199}
+  tooted: any[] = [
+    // {nimi: 41, hind: 1999}, // [object Object]
+    // {nimi: 13, hind: 721},
+    // {nimi: true, hind: 1500},
+    // {nimi: 'sadasd', hind: 199}
   ]; 
 
-  constructor() { }
+  // üksik toode - täna
+  // maksmine - API päring internetti --> EveryPay
+  
+  // muutmine ---- pean üles leidma toote keda ma lähen muutma
+  // andmebaasist toodete võtmine - API päring et saada andmebaasist asju kätte
+
+
+  constructor(private http: HttpClient) { }
 
   ngOnInit(): void {
+    // const tootedLS = localStorage.getItem("tooted");
+    // if (tootedLS) {
+    //   this.tooted = JSON.parse(tootedLS);
+    // }
+    this.http.get<any>("https://angular-02-2022-default-rtdb.europe-west1.firebasedatabase.app/tooted.json").subscribe(objektFirebasest => {
+      for (const key in objektFirebasest) {
+        this.tooted.push(objektFirebasest[key])     // {nimi: "s", hind: 1};
+      }
+    });
   }
 
             // {nimi: 'sadasd', hind: 199}
