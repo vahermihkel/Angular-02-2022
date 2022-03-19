@@ -6,13 +6,17 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
+import { SingleProductComponent } from './single-product/single-product.component';
 
 const routes: Routes = [
+  // localhost:4200 -> localhost:4200/ostukorv
+  // localhost:4200/admin
   { path: "", component: HomeComponent },
   { path: "ostukorv", component: CartComponent },
+  { path: "toode/:productId", component: SingleProductComponent },
   { path: "admin", component: AdminHomeComponent },
   { path: "admin/lisa", component: AddProductComponent },
-  { path: "admin/muuda", component: EditProductComponent },
+  { path: "admin/muuda/:dansdnwadjn", component: EditProductComponent },
   { path: "admin/vaata-tooteid", component: ViewProductsComponent },
 ];
 

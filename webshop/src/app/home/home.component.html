@@ -1,6 +1,8 @@
 <div *ngFor="let product of products">
-  <img src="{{product.imgSrc}}" alt="">
-  <div>{{ product.name }} </div>
-  <div>{{ product.price }} </div>
-  <button>Lisa ostukorvi</button>
+  <div routerLink="/toode/{{product.id}}">
+    <img src="{{product.imgSrc}}" alt="">
+    <div>{{ product.name }} </div>
+    <div>{{ product.price }} </div>
+  </div>
+  <button (click)="onAddToCart(product)">Lisa ostukorvi</button>
 </div>

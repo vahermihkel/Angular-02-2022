@@ -13,6 +13,7 @@ import { AddProductComponent } from './admin/add-product/add-product.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { SingleProductComponent } from './single-product/single-product.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
     AddProductComponent,
     EditProductComponent,
     ViewProductsComponent,
-    AdminHomeComponent
+    AdminHomeComponent,
+    SingleProductComponent
   ],
   imports: [
     BrowserModule,

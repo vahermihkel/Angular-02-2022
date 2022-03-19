@@ -17,4 +17,36 @@ export class HomeComponent implements OnInit {
     })
   }
 
+      // {id: 3123, name: "Coca", price: 4}
+  onAddToCart(product: any) {
+              // VANA: '[{id: 3122, name: "Fanta", price: 4}, {id: 3123, name: "Coca", price: 4}]'
+              // UUS: '[{cartProduct: {id: 3122, name: "Fanta", price: 4},quantity:1}, {cartProduct: {id: 3122, name: "Coca", price: 4},quantity:2}]'
+    const cartFromSS = sessionStorage.getItem("cart");
+    let cartProducts: any[] = [];
+    if (cartFromSS) {
+            // VANA: '[{id: 3122, name: "Fanta", price: 4}, {id: 3123, name: "Coca", price: 4}]'
+      cartProducts = JSON.parse(cartFromSS);
+      // on olemas sessionStorage
+      let index = cartProducts.findIndex(element => element.cartProduct.id == product.id);
+      if (index > -1) {
+      // on olemas juba ostukorvis --- suurendan quantity-t
+      // cartProducts[index].quantity = cartProducts[index].quantity + 1;
+      // cartProducts[index].quantity += 1;
+        cartProducts[index].quantity++;
+      } else {
+        // ei olemas ostukorvis --- pushin
+        cartProducts.push({cartProduct: product, quantity: 1});
+      }
+    } else {
+      // ei olemas sessionStorage-t
+      cartProducts.push({cartProduct: product, quantity: 1});
+    }
+    sessionStorage.setItem("cart", JSON.stringify(cartProducts));
+  }
+
+  // [
+    // {cartProduct:{id: 3122, name: "Fanta", price: 4}, quantity: 1}, 
+    // {cartProduct:{id: 3123, name: "Coca", price: 4}, quantity: 1}
+  //]
+
 }
