@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { CartProduct } from '../models/cart-product.model';
 
 @Component({
   selector: 'app-cart',
@@ -6,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent implements OnInit {
-  cartProducts: any[] = [];
+  cartProducts: CartProduct[] = [];
 
   constructor() { }
 
@@ -17,7 +18,7 @@ export class CartComponent implements OnInit {
     }
   }
 
-  onDecreaseQuantity(product: any) {
+  onDecreaseQuantity(product: CartProduct) {
     product.quantity--;
     if (product.quantity < 1) {
       this.onRemoveFromCart(product);
@@ -25,13 +26,13 @@ export class CartComponent implements OnInit {
     sessionStorage.setItem("cart", JSON.stringify(this.cartProducts));
   }
 
-  onIncreaseQuantity(product: any) {
+  onIncreaseQuantity(product: CartProduct) {
     product.quantity++;
     sessionStorage.setItem("cart", JSON.stringify(this.cartProducts));
   }
 
           // {cartProduct: {id: 3123, name: "Coca", price: 4}, quantity}
-  onRemoveFromCart(product: any) {
+  onRemoveFromCart(product: CartProduct) {
     const index = this.cartProducts.indexOf(product);
     this.cartProducts.splice(index,1);
     sessionStorage.setItem("cart", JSON.stringify(this.cartProducts));

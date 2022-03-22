@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router'; // node_module seest
+import { Product } from '../models/product.model';
 
 @Component({
   selector: 'app-single-product',
@@ -8,7 +9,7 @@ import { ActivatedRoute } from '@angular/router'; // node_module seest
   styleUrls: ['./single-product.component.css']
 })
 export class SingleProductComponent implements OnInit {
-  product: any; // kõik muutujad siin üleval - neid kasutame HTML-s
+  product!: Product; // kõik muutujad siin üleval - neid kasutame HTML-s
 
   constructor(private route: ActivatedRoute,
     private http: HttpClient) { }
@@ -19,9 +20,16 @@ export class SingleProductComponent implements OnInit {
     const id = this.route.snapshot.paramMap.get("productId");
     console.log(id);
 
-    this.http.get<any[]>("https://webshop-02-2022-93e65-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
-      const products = productsFromDb;
-      this.product = products.find(element => element.id == id);
+    this.http.get<Product[]>("https://webshop-02-2022-93e65-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
+      let newArray = [];
+      for (const key in productsFromDb) {
+        newArray.push(productsFromDb[key]);
+      }
+      const products = newArray;
+      let productFound = products.find(element => element.id == Number(id));
+      if (productFound) {
+        this.product = productFound;
+      }
     })
   }
 

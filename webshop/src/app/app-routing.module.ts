@@ -18,6 +18,7 @@ const routes: Routes = [
   { path: "admin/lisa", component: AddProductComponent },
   { path: "admin/muuda/:dansdnwadjn", component: EditProductComponent },
   { path: "admin/vaata-tooteid", component: ViewProductsComponent },
+  // { path: "**", component: NotFoundComponent },
 ];
 
 @NgModule({

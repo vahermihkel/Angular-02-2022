@@ -2,5 +2,10 @@
   "navbar.admin-button": "Admin vaade",
   "navbar.cart-button": "Ostukorv",
   "navbar.add-prod-button": "Lisa toode",
-  "navbar.view-prod-button": "Vaata tooteid"
+  "navbar.view-prod-button": "Vaata tooteid",
+  "home.sortaz": "Sorteeri A-Z",
+  "home.sortza": "Sorteeri Z-A",
+  "home.sort-price-asc": "Sorteeri hind kasvavalt",
+  "home.sort-price-desc": "Sorteeri hind kahanevalt",
+  "home.add-to-cart": "Lisa ostukorvi"
 }
