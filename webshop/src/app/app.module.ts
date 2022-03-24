@@ -16,6 +16,8 @@ import { EditProductComponent } from './admin/edit-product/edit-product.componen
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
 import { SingleProductComponent } from './single-product/single-product.component';
+import { ProductPricePipe } from './pipes/product-price.pipe';
+import { ShortenDescriptionPipe } from './pipes/shorten-description.pipe';
 
 @NgModule({
   declarations: [
@@ -26,7 +28,9 @@ import { SingleProductComponent } from './single-product/single-product.componen
     EditProductComponent,
     ViewProductsComponent,
     AdminHomeComponent,
-    SingleProductComponent
+    SingleProductComponent,
+    ProductPricePipe,
+    ShortenDescriptionPipe
   ],
   imports: [
     BrowserModule,

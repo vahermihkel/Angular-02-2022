@@ -15,8 +15,8 @@
         <li class="nav-item">
           <a class="nav-link" routerLinkActive="active" routerLink="/ostukorv">{{"navbar.cart-button" | translate}}</a>
         </li>
-        <button (click)="useLanguage('en')">ENG</button>
-        <button (click)="useLanguage('ee')">EST</button>
+        <img class="lang-flag" src="assets/united-kingdom.png" (click)="useLanguage('en')" />
+        <img class="lang-flag" src="assets/estonia.png" (click)="useLanguage('ee')" />
         <li class="nav-item dropdown">
           <a class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/admin" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{"navbar.admin-button" | translate}}

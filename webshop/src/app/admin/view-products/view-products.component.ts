@@ -9,6 +9,9 @@ import { Product } from 'src/app/models/product.model';
 })
 export class ViewProductsComponent implements OnInit {
   products: Product[] = [];
+  originalProducts: Product[] = [];
+  wordCount = 4;
+  searchedProduct = "";
 
   constructor(private http: HttpClient) { }
 
@@ -19,7 +22,19 @@ export class ViewProductsComponent implements OnInit {
         newArray.push(productsFromDb[key]);
       }
       this.products = newArray;
+      this.originalProducts = newArray;
     })
   }
 
+  onSearch() {
+    this.products = this.originalProducts.filter(element => 
+      element.name.toLowerCase().indexOf(this.searchedProduct.toLowerCase()) > -1 ||
+      element.id.toString().indexOf(this.searchedProduct.toLowerCase()) > -1);
+  }
 }
+
+// estonia
+// great britain
+// plus
+// minus
+// trash
