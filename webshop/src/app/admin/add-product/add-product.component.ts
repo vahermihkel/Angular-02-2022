@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Product } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-add-product',
@@ -13,10 +14,10 @@ export class AddProductComponent implements OnInit {
   isIdUnique = false;
   errorMessage = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.http.get<Product[]>("https://webshop-02-2022-93e65-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
+    this.productService.getProductsFromDb().subscribe(productsFromDb => {
       let newArray = [];
       for (const key in productsFromDb) {
         newArray.push(productsFromDb[key]);
@@ -27,11 +28,9 @@ export class AddProductComponent implements OnInit {
 
   onSubmit(addItemForm: NgForm) {
     if (addItemForm.valid && this.isIdUnique) {
-      this.http.post(
-        "https://webshop-02-2022-93e65-default-rtdb.europe-west1.firebasedatabase.app/products.json", 
-        addItemForm.value).subscribe(() => {
+      this.productService.addProductToDb(addItemForm.value).subscribe(() => {
           addItemForm.reset();
-          this.http.get<Product[]>("https://webshop-02-2022-93e65-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
+          this.productService.getProductsFromDb().subscribe(productsFromDb => {
             let newArray = [];
             for (const key in productsFromDb) {
               newArray.push(productsFromDb[key]);
@@ -44,6 +43,10 @@ export class AddProductComponent implements OnInit {
 
   onCheckIdUniqueness(id: number) {
     this.errorMessage = "";
+    if (id === 11110000) {
+      this.errorMessage = "Tegemist on pakiautomaadi ID-ga";
+      return;
+    }
     if (id >= 10000000 && id <= 99999999) {
       const index = this.products.findIndex(element => element.id == id );
       if (index === -1) {

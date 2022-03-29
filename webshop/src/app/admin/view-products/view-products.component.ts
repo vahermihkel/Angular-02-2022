@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product.model';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-view-products',
@@ -13,10 +14,10 @@ export class ViewProductsComponent implements OnInit {
   wordCount = 4;
   searchedProduct = "";
 
-  constructor(private http: HttpClient) { }
+  constructor(private productService: ProductService) { }
 
   ngOnInit(): void {
-    this.http.get<Product[]>("https://webshop-02-2022-93e65-default-rtdb.europe-west1.firebasedatabase.app/products.json").subscribe(productsFromDb => {
+    this.productService.getProductsFromDb().subscribe(productsFromDb => {
       let newArray = [];
       for (const key in productsFromDb) {
         newArray.push(productsFromDb[key]);
@@ -30,6 +31,10 @@ export class ViewProductsComponent implements OnInit {
     this.products = this.originalProducts.filter(element => 
       element.name.toLowerCase().indexOf(this.searchedProduct.toLowerCase()) > -1 ||
       element.id.toString().indexOf(this.searchedProduct.toLowerCase()) > -1);
+  }
+
+  onDelete() {
+    this.productService.deleteProductFromDb(this.products).subscribe();
   }
 }
 

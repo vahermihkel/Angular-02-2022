@@ -1,35 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="container-fluid">
-    <a class="navbar-brand" routerLink="/"><img src="assets/webshio.png" alt=""></a>
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active"  aria-current="page" routerLink="/meist">KOJU: Meist</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/poed">KOJU: Poed</a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" routerLinkActive="active" routerLink="/ostukorv">{{"navbar.cart-button" | translate}}</a>
-        </li>
-        <img class="lang-flag" src="assets/united-kingdom.png" (click)="useLanguage('en')" />
-        <img class="lang-flag" src="assets/estonia.png" (click)="useLanguage('ee')" />
-        <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/admin" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{"navbar.admin-button" | translate}}
-          </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <li><a class="dropdown-item" routerLinkActive="active" routerLink="/admin/lisa">{{"navbar.add-prod-button" | translate}}</a></li>
-            <li><a class="dropdown-item" routerLinkActive="active" routerLink="/admin/vaata-tooteid">{{"navbar.view-prod-button" | translate}}</a></li>
-          </ul>
-        </li>
-      </ul>
-    </div>
-  </div>
-</nav>
+<app-navbar></app-navbar>
 
 <!-- app-routingust siia tulevad seosed -->
 <router-outlet></router-outlet>
