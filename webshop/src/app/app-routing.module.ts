@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { CategoryComponent } from './admin/category/category.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
 import { CartComponent } from './cart/cart.component';
@@ -15,8 +16,9 @@ const routes: Routes = [
   { path: "ostukorv", component: CartComponent },
   { path: "toode/:productId", component: SingleProductComponent },
   { path: "admin", component: AdminHomeComponent },
+  { path: "admin/kategooria", component: CategoryComponent },
   { path: "admin/lisa", component: AddProductComponent },
-  { path: "admin/muuda/:dansdnwadjn", component: EditProductComponent },
+  { path: "admin/muuda/:productId", component: EditProductComponent },
   { path: "admin/vaata-tooteid", component: ViewProductsComponent },
   // { path: "**", component: NotFoundComponent },
 ];

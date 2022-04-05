@@ -21,4 +21,8 @@ export class ProductService {
   addProductToDb(product: Product) {
     return this.http.post(this.url,product);
   }
+
+  editProductInDb(products: Product[]) {
+    return this.http.put(this.url,products);
+  }
 }

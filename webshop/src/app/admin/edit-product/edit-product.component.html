@@ -1,1 +1,19 @@
-<p>edit-product works!</p>
+<div>{{ errorMessage }}</div>
+
+<form *ngIf="editForm" (ngSubmit)="onEdit()" [formGroup]="editForm">
+  <label for="">Product ID</label> <br>
+  <input (keyup)="onCheckIdUniqueness(editForm.value.id)" formControlName="id" type="number" required><br>
+  <label for="">Product name</label> <br>
+  <input formControlName="name" type="text" required> <br>
+  <label for="">Product price</label> <br>
+  <input formControlName="price" type="number" required><br>
+  <label for="">Kirjeldus</label> <br>
+  <input formControlName="description" type="text" required> <br>
+  <label for="">Kategooria</label> <br>
+  <input formControlName="category" type="text" required><br>
+  <label for="">Pilt</label> <br>
+  <input formControlName="imgSrc" type="text" required> <br>
+  <label for="">Aktiivne</label> <br>
+  <input formControlName="isActive" type="checkbox"><br>
+  <button [disabled]="editForm.invalid">Edit product</button>
+</form>

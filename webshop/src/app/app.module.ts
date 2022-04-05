@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
@@ -19,6 +19,7 @@ import { SingleProductComponent } from './single-product/single-product.componen
 import { ProductPricePipe } from './pipes/product-price.pipe';
 import { ShortenDescriptionPipe } from './pipes/shorten-description.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
+import { CategoryComponent } from './admin/category/category.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { NavbarComponent } from './navbar/navbar.component';
     SingleProductComponent,
     ProductPricePipe,
     ShortenDescriptionPipe,
-    NavbarComponent
+    NavbarComponent,
+    CategoryComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +48,7 @@ import { NavbarComponent } from './navbar/navbar.component';
             }
         }),
     FormsModule,
+    ReactiveFormsModule,
     AngularToastifyModule,
   ],
   providers: [ToastService],

@@ -57,9 +57,9 @@ export class HomeComponent implements OnInit {
       // ei olemas sessionStorage-t
       cartProducts.push({cartProduct: product, quantity: 1});
     }
-    this.cartService.cartChanged.next(true);
     this._toastService.success('Edukalt ostukorvi lisatud');
     sessionStorage.setItem("cart", JSON.stringify(cartProducts));
+    this.cartService.cartChanged.next(true);
   }
 
   // [

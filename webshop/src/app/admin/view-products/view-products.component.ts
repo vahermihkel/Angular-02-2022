@@ -33,8 +33,10 @@ export class ViewProductsComponent implements OnInit {
       element.id.toString().indexOf(this.searchedProduct.toLowerCase()) > -1);
   }
 
-  onDelete() {
-    this.productService.deleteProductFromDb(this.products).subscribe();
+  onDelete(product: any) {
+    const index = this.originalProducts.indexOf(product);
+    this.originalProducts.splice(index,1);
+    this.productService.deleteProductFromDb(this.originalProducts).subscribe();
   }
 }
 
