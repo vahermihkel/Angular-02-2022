@@ -10,7 +10,13 @@
   <label for="">Kirjeldus</label> <br>
   <input formControlName="description" type="text" required> <br>
   <label for="">Kategooria</label> <br>
-  <input formControlName="category" type="text" required><br>
+  <!-- <input formControlName="category" type="text" required><br> -->
+  <select formControlName="category" required>
+    <option disabled value="">Vali kategooria</option>
+    <option *ngFor="let cat of categories" value="{{cat.name}}">
+      {{cat.name | titlecase}}
+    </option>
+  </select> <br>
   <label for="">Pilt</label> <br>
   <input formControlName="imgSrc" type="text" required> <br>
   <label for="">Aktiivne</label> <br>

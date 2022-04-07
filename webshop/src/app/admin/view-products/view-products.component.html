@@ -11,6 +11,9 @@
   <div>{{ product.name }} </div>
   <div>{{ product.price }} </div>
   <div>{{ product.description | shortenDescription:wordCount }} </div>
+  <div>{{ product.category }}</div>
+  <div>{{ product.isActive }}</div>
+  <div>{{ product.id }}</div>
   <button (click)="onDelete(product)">Kustuta</button>
   <button routerLink="/admin/muuda/{{product.id}}">Muuda</button>
 </div>
