@@ -6,6 +6,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ToastService, AngularToastifyModule } from 'angular-toastify'; 
+import {NgbModule} from '@ng-bootstrap/ng-bootstrap';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -20,6 +21,8 @@ import { ProductPricePipe } from './pipes/product-price.pipe';
 import { ShortenDescriptionPipe } from './pipes/shorten-description.pipe';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CategoryComponent } from './admin/category/category.component';
+import { MapComponent } from './map/map.component';
+import { ShopsComponent } from './shops/shops.component';
 
 @NgModule({
   declarations: [
@@ -34,7 +37,9 @@ import { CategoryComponent } from './admin/category/category.component';
     ProductPricePipe,
     ShortenDescriptionPipe,
     NavbarComponent,
-    CategoryComponent
+    CategoryComponent,
+    MapComponent,
+    ShopsComponent
   ],
   imports: [
     BrowserModule,
@@ -50,6 +55,7 @@ import { CategoryComponent } from './admin/category/category.component';
     FormsModule,
     ReactiveFormsModule,
     AngularToastifyModule,
+    NgbModule
   ],
   providers: [ToastService],
   bootstrap: [AppComponent]

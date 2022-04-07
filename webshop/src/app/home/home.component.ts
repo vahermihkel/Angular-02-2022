@@ -13,6 +13,21 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
+  images = [
+    "https://picsum.photos/id/944/900/500",
+    "https://picsum.photos/id/1011/900/500",
+    "https://picsum.photos/id/984/900/500"
+  ];
+  // HTMLi *ngFor kujule
+  // .ts objektid
+  // HTML-s:
+  // src sees .url
+  // h3 sees .title    "title1", title2
+  // p sees .text       "text1"
+  // alt sees .alt      "alt1"
+
+
 
   constructor(private _toastService: ToastService,
     private cartService: CartService,
