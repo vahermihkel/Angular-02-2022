@@ -1,0 +1,9 @@
+.active {
+  border: 1px solid green;
+  margin: 10px;
+}
+
+.in-active {
+  border: 1px solid red;
+  margin: 10px; 
+}

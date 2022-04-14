@@ -23,23 +23,23 @@ export class NavbarComponent implements OnInit {
   }
 
   private checkIfLoggedIn() {
+    this.loggedInFromSS();
+    this.authService.loggedInChanged.subscribe(() => {
+      this.loggedInFromSS();
+    })
+  }
+
+  loggedInFromSS() {
     if (sessionStorage.getItem("userData")) {
       this.isLoggedIn = true;
     } else {
       this.isLoggedIn = false;
     }
-    this.authService.loggedInChanged.subscribe(() => {
-      if (sessionStorage.getItem("userData")) {
-        this.isLoggedIn = true;
-      } else {
-        this.isLoggedIn = false;
-      }
-    })
   }
 
   onLogout() {
     this.authService.logout();
-    this.isLoggedIn = false;
+    this.authService.loggedInChanged.next(false);
   }
 
   private determineLanguage() {

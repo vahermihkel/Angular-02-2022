@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { ToastService } from 'angular-toastify';
+import { AuthService } from '../auth/auth.service';
 import { CartProduct } from '../models/cart-product.model';
 import { Product } from '../models/product.model';
 import { CartService } from '../services/cart.service';
@@ -13,12 +14,16 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
   products: Product[] = [];
+  originalProducts: Product[] = [];
   // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
   images = [
     "https://picsum.photos/id/944/900/500",
     "https://picsum.photos/id/1011/900/500",
     "https://picsum.photos/id/984/900/500"
   ];
+  isLoggedIn = false;
+  categories: string[] = [];
+  selectedCategory = "all";
   // HTMLi *ngFor kujule
   // .ts objektid
   // HTML-s:
@@ -31,7 +36,8 @@ export class HomeComponent implements OnInit {
 
   constructor(private _toastService: ToastService,
     private cartService: CartService,
-    private productService: ProductService) { }
+    private productService: ProductService,
+    private authService: AuthService) { }
 
   ngOnInit(): void {
     this.productService.getProductsFromDb().subscribe(productsFromDb => {
@@ -40,7 +46,48 @@ export class HomeComponent implements OnInit {
         newArray.push(productsFromDb[key]);
       }
       this.products = newArray;
+      this.originalProducts = newArray;
+      // [{n: "CC", c: "coca"}, {n: "Vichy", c: "water"},{n: "Fanta", c: "coca"},{n: "Sprite", c: "coca"}]
+      // [].map(element => element.c);
+      // ["coca", "water", "coca", "coca"].filter()
+      // 1. ("coca", 0, Array)=> 0 === ["coca", "water", "coca", "coca"].indexOf("coca")
+      //                          0 === 0    true
+      // 2, ("water", 1, Array)=> 1 === ["coca", "water", "coca", "coca"].indexOf("water")
+      //                           1 === 1    true
+      // 3. ("coca", 2, Array)=> 2 === ["coca", "water", "coca", "coca"].indexOf("coca")
+      //                          2 === 0   false
+      this.categories = this.originalProducts
+                          .map(element => element.category)
+                          .filter((element, index, array) => 
+                              index === array.indexOf(element)
+                          );
+    });
+
+    this.checkIfLoggedIn();
+  }
+
+  private checkIfLoggedIn() {
+    this.loggedInFromSS();
+    this.authService.loggedInChanged.subscribe(() => {
+      this.loggedInFromSS();
     })
+  }
+
+  loggedInFromSS() {
+    if (sessionStorage.getItem("userData")) {
+      this.isLoggedIn = true;
+    } else {
+      this.isLoggedIn = false;
+    }
+  }
+
+  onFilterByCategory(category: string) {
+    if (category === 'all') {
+      this.products = this.originalProducts;
+    } else {
+      this.products = this.originalProducts.filter(element => element.category === category);
+    }
+    this.selectedCategory = category;
   }
 
       // {id: 3123, name: "Coca", price: 4}

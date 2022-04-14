@@ -5,3 +5,16 @@ Minu poed:
 </div>
 
 <app-map></app-map>
+
+Kontakteeru meiega
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <label>Sinu nimi</label> 
+  <input ngModel name="name" type="text"> <br>
+  <label>Sinu e-mail</label>
+  <input ngModel name="email" type="text"> <br>
+  <label>Sinu telefon</label>
+  <input ngModel name="phone" type="text"> <br>
+  <label>Sinu sõnum</label>
+  <input ngModel name="message" type="text"> <br>
+  <button>SAADA</button>
+</form>
