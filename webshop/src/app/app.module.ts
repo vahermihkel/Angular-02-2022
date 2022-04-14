@@ -23,6 +23,8 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { MapComponent } from './map/map.component';
 import { ShopsComponent } from './shops/shops.component';
+import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 @NgModule({
   declarations: [
@@ -39,7 +41,9 @@ import { ShopsComponent } from './shops/shops.component';
     NavbarComponent,
     CategoryComponent,
     MapComponent,
-    ShopsComponent
+    ShopsComponent,
+    LoginComponent,
+    SignupComponent
   ],
   imports: [
     BrowserModule,

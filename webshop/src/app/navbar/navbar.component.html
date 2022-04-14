@@ -19,10 +19,19 @@
         <img class="lang-flag" src="assets/united-kingdom.png" (click)="useLanguage('en')" />
         <img class="lang-flag" src="assets/estonia.png" (click)="useLanguage('ee')" />
         <li class="nav-item dropdown">
-          <a class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/admin" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+          <a *ngIf="isLoggedIn" class="nav-link dropdown-toggle" routerLinkActive="active" routerLink="/admin" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
             {{"navbar.admin-button" | translate}}
           </a>
-          <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a *ngIf="!isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/logi-sisse">
+            Logi sisse
+          </a>
+          <a *ngIf="!isLoggedIn" class="nav-link" routerLinkActive="active" routerLink="/registreeru">
+            Registreeru
+          </a>
+          <a *ngIf="isLoggedIn" class="nav-link" routerLinkActive="active" (click)="onLogout()">
+            Logi välja
+          </a>
+          <ul *ngIf="isLoggedIn" class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
             <li><a class="dropdown-item" routerLinkActive="active" routerLink="/admin/lisa">{{"navbar.add-prod-button" | translate}}</a></li>
             <li><a class="dropdown-item" routerLinkActive="active" routerLink="/admin/vaata-tooteid">{{"navbar.view-prod-button" | translate}}</a></li>
           </ul>
