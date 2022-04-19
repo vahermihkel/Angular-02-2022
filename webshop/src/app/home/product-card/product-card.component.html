@@ -1,0 +1,7 @@
+<button *ngIf="isLoggedIn" class="change-button" routerLink="/admin/muuda/{{product.id}}">Muuda</button>
+<div routerLink="/toode/{{product.id}}">
+  <img src="{{product.imgSrc}}" alt="">
+  <div>{{ product.name }} </div>
+  <div>{{ product.price }} </div>
+</div>
+<button (click)="onAddToCart(product)">{{"home.add-to-cart" | translate}}</button>

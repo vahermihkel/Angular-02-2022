@@ -20,6 +20,11 @@ export class AddProductComponent implements OnInit {
     private categoryService: CategoryService) { }
 
   ngOnInit(): void {
+    this.fetchProductsFromDb();
+    this.fetchCategoriesFromDb();
+  }
+
+  fetchProductsFromDb() {
     this.productService.getProductsFromDb().subscribe(productsFromDb => {
       let newArray = [];
       for (const key in productsFromDb) {
@@ -27,7 +32,9 @@ export class AddProductComponent implements OnInit {
       }
       this.products = newArray;
     })
+  }
 
+  fetchCategoriesFromDb() {
     this.categoryService.getCategoriesFromDb().subscribe(categoriesFromDb => {
       let newArray = []; // {-madsdw213: {Product}, -aeadweq131: {Product}}
                           // [{Product}, {Product}]      MongoDb

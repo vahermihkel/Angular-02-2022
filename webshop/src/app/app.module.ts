@@ -25,6 +25,9 @@ import { MapComponent } from './map/map.component';
 import { ShopsComponent } from './shops/shops.component';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { ParcelMachineComponent } from './cart/parcel-machine/parcel-machine.component';
+import { ProductCardComponent } from './home/product-card/product-card.component';
+import { FilterBarComponent } from './home/filter-bar/filter-bar.component';
 
 @NgModule({
   declarations: [
@@ -43,7 +46,10 @@ import { SignupComponent } from './auth/signup/signup.component';
     MapComponent,
     ShopsComponent,
     LoginComponent,
-    SignupComponent
+    SignupComponent,
+    ParcelMachineComponent,
+    ProductCardComponent,
+    FilterBarComponent
   ],
   imports: [
     BrowserModule,

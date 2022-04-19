@@ -20,18 +20,20 @@ export class SingleProductComponent implements OnInit {
     // const id = location.href.split("toode/")[1];
     const id = this.route.snapshot.paramMap.get("productId");
     console.log(id);
+    this.findProduct(Number(id));
+  }
 
+  findProduct(id: number) {
     this.productService.getProductsFromDb().subscribe(productsFromDb => {
       let newArray = [];
       for (const key in productsFromDb) {
         newArray.push(productsFromDb[key]);
       }
       const products = newArray;
-      let productFound = products.find(element => element.id == Number(id));
+      let productFound = products.find(element => element.id == id);
       if (productFound) {
         this.product = productFound;
       }
     })
   }
-
 }

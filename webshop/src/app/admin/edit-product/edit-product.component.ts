@@ -27,6 +27,11 @@ export class EditProductComponent implements OnInit {
     this.id = Number(this.route.snapshot.paramMap.get("productId"));
     console.log(this.id);
 
+    this.findProduct();
+    this.fetchCategoriesFromDb();
+  }
+
+  findProduct() {
     this.productService.getProductsFromDb().subscribe(productsFromDb => {
       let newArray = [];
       for (const key in productsFromDb) {
@@ -39,18 +44,24 @@ export class EditProductComponent implements OnInit {
       if (productFound) {
         this.index = this.products.indexOf(productFound);
         const product = productFound;
-        this.editForm = new FormGroup({
-          id: new FormControl(product.id),
-          name: new FormControl(product.name),
-          price: new FormControl(product.price),
-          imgSrc: new FormControl(product.imgSrc),
-          isActive: new FormControl(product.isActive),
-          category: new FormControl(product.category),
-          description: new FormControl(product.description),
-        });
+        this.initializeForm(product);
       }
     })
+  }
 
+  initializeForm(product: Product) {
+    this.editForm = new FormGroup({
+      id: new FormControl(product.id),
+      name: new FormControl(product.name),
+      price: new FormControl(product.price),
+      imgSrc: new FormControl(product.imgSrc),
+      isActive: new FormControl(product.isActive),
+      category: new FormControl(product.category),
+      description: new FormControl(product.description),
+    });
+  }
+
+  fetchCategoriesFromDb() {
     this.categoryService.getCategoriesFromDb().subscribe(categoriesFromDb => {
       let newArray = []; // {-madsdw213: {Product}, -aeadweq131: {Product}}
                           // [{Product}, {Product}]      MongoDb

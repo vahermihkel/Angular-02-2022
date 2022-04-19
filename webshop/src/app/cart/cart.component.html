@@ -11,19 +11,7 @@
   <img [ngClass]="{'disabled': product.cartProduct.id === 11110000}" class="cart-item-button" src="assets/delete.png" (click)="onRemoveFromCart(product)" />
 </div>
 
-<select 
-  *ngIf="!selectedParcelMachine && cartProducts.length > 0" 
-  [(ngModel)]="selectedParcelMachine"
-  (ngModelChange)="onSelectedPMachine()">
-  <option value="" disabled>Vali pakiautomaat</option>
-  <option *ngFor="let pMachine of parcelMachines" value="{{pMachine.NAME}}">{{pMachine.NAME}}</option>
-</select>
-
-
-<div *ngIf="selectedParcelMachine">
-  <span>Valitud pakiautomaat: {{ selectedParcelMachine }}</span>
-  <button (click)="onDeleteParcelMachine()">X</button>
-</div>
+<app-parcel-machine [cartProducts]="cartProducts"></app-parcel-machine>
 
 <div *ngIf="cartProducts.length > 0;else emptyCart" class="sum-of-cart">{{ sumOfCart | productPrice }}</div>
 
