@@ -16,11 +16,7 @@ export class HomeComponent implements OnInit {
   products: Product[] = [];
   originalProducts: Product[] = [];
   // images = [944, 1011, 984].map((n) => `https://picsum.photos/id/${n}/900/500`);
-  images = [
-    "https://picsum.photos/id/944/900/500",
-    "https://picsum.photos/id/1011/900/500",
-    "https://picsum.photos/id/984/900/500"
-  ];
+  
   isLoggedIn = false;
   categories: string[] = [];
   selectedCategory = "all";

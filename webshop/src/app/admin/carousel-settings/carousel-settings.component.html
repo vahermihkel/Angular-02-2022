@@ -1,0 +1,21 @@
+<form (ngSubmit)="onSubmit(form)" #form="ngForm">
+  <label>Lisa pildi ID, mis võetakse picsum.photos lehelt</label> <br>
+  <input ngModel name="id" type="number"> <br>
+  <label>Pildi pealkiri</label> <br>
+  <input ngModel name="header" type="text"> <br>
+  <label>Pildi tekst</label> <br>
+  <input ngModel name="text" type="text"> <br>
+  <label>Alternatiivne tekst pildile</label> <br>
+  <input ngModel name="alt" type="text"> <br>
+  <button>Sisesta uus pilt</button> <br>
+</form>
+
+<br><br>
+
+<div *ngFor="let image of images">
+  <img src="{{image.url}}" alt="">
+  <div>Pealkiri: {{image.header}}</div>
+  <div>Tekst: {{image.text}}</div>
+  <div>Alternatiivne tekst: {{image.alt}}</div>
+  <button (click)="onDelete(image.url)">X</button>
+</div>

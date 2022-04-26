@@ -28,6 +28,8 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { ParcelMachineComponent } from './cart/parcel-machine/parcel-machine.component';
 import { ProductCardComponent } from './home/product-card/product-card.component';
 import { FilterBarComponent } from './home/filter-bar/filter-bar.component';
+import { CarouselComponent } from './home/carousel/carousel.component';
+import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,9 @@ import { FilterBarComponent } from './home/filter-bar/filter-bar.component';
     SignupComponent,
     ParcelMachineComponent,
     ProductCardComponent,
-    FilterBarComponent
+    FilterBarComponent,
+    CarouselComponent,
+    CarouselSettingsComponent
   ],
   imports: [
     BrowserModule,

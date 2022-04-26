@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddProductComponent } from './admin/add-product/add-product.component';
 import { AdminHomeComponent } from './admin/admin-home/admin-home.component';
+import { CarouselSettingsComponent } from './admin/carousel-settings/carousel-settings.component';
 import { CategoryComponent } from './admin/category/category.component';
 import { EditProductComponent } from './admin/edit-product/edit-product.component';
 import { ViewProductsComponent } from './admin/view-products/view-products.component';
@@ -28,6 +29,7 @@ const routes: Routes = [
     { path: "lisa", component: AddProductComponent },
     { path: "muuda/:productId", component: EditProductComponent },
     { path: "vaata-tooteid", component: ViewProductsComponent },
+    { path: "karuselli-seaded", component: CarouselSettingsComponent },
   ] },
   // { path: "**", component: NotFoundComponent },
 ];
